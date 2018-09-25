@@ -1,0 +1,43 @@
+{
+  "name": "react-ssr",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "ignore-styles": "^5.0.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "request": "^2.88.0"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://jsonplaceholder.typicode.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "/api": ""
+      }
+    }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "server": "babel server/server.js --out-file server/index.js --presets=@babel/env,@babel/react",
+    "build:ssr": "react-scripts build --prod && npm run server",
+    "serve:ssr": "node start.js"
+  }
+}
